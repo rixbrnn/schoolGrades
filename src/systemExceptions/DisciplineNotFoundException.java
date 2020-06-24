@@ -1,4 +1,4 @@
-package laboratorioFinal;
+package systemExceptions;
 
 public class DisciplineNotFoundException extends Exception {
 	public DisciplineNotFoundException() {

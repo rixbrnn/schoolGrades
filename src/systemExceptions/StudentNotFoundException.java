@@ -1,4 +1,4 @@
-package laboratorioFinal;
+package systemExceptions;
 
 public class StudentNotFoundException extends Exception {
 	public StudentNotFoundException() {

@@ -1,6 +1,8 @@
-package laboratorioFinal;
+package userInterfaceMenu;
 
 import java.util.Scanner;
+
+import school.SchoolGrades;
 
 public class UserInterface {
 	

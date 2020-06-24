@@ -1,7 +1,7 @@
-package laboratorioFinal;
+package systemExceptions;
 
 public class InvalidCodeException extends Exception{
-	InvalidCodeException(){
+	public InvalidCodeException(){
 		super("Invalid Code!");
 	}
 

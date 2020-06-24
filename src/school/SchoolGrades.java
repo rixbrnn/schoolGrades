@@ -1,12 +1,15 @@
-package laboratorioFinal;
+package school;
 
 import java.util.ArrayList;
+import systemExceptions.DisciplineIsEmptyException;
+import systemExceptions.DisciplineNotFoundException;
+import systemExceptions.DuplicatedCodeException;
+import systemExceptions.StudentNotFoundException;
 
 public class SchoolGrades {
-
 	private ArrayList<Discipline> disciplines = new ArrayList<>();
-	
-	public ArrayList<Discipline> getDisciplines(){
+
+	public ArrayList<Discipline> getDisciplines() {
 		return disciplines;
 	}
 
@@ -41,7 +44,7 @@ public class SchoolGrades {
 		return false;
 	}
 
-	public boolean addStudentToDiscipline(Student std, int disCode) {
+	public boolean addStudentToDiscipline(Student std, int disCode) throws DisciplineIsEmptyException {
 		if (!hasDiscipline(disCode))
 			return false;
 		try {
@@ -57,8 +60,9 @@ public class SchoolGrades {
 			return false;
 		}
 	}
-	
-	public boolean removeStudentFromDiscipline(int stdCode, int disCode) {
+
+	public boolean removeStudentFromDiscipline(int stdCode, int disCode)
+			throws StudentNotFoundException, DisciplineIsEmptyException {
 		if (!hasDiscipline(disCode) || !hasStudent(stdCode))
 			return false;
 		try {
@@ -70,8 +74,8 @@ public class SchoolGrades {
 		}
 	}
 
-	public Student getStudent(int code) throws StudentNotFoundException {
-		if(hasStudent(code)) {
+	public Student getStudent(int code) throws StudentNotFoundException, DisciplineIsEmptyException {
+		if (hasStudent(code)) {
 			for (Discipline i : disciplines) {
 				try {
 					return i.getStudent(code);
@@ -83,7 +87,7 @@ public class SchoolGrades {
 		throw new StudentNotFoundException();
 	}
 
-	private boolean hasStudent(int code) {
+	private boolean hasStudent(int code) throws DisciplineIsEmptyException {
 		for (Discipline i : disciplines) {
 			if (i.hasStudent(code))
 				return true;
@@ -91,7 +95,7 @@ public class SchoolGrades {
 		return false;
 	}
 
-	public boolean removeStudentFromAll(int stdCode) {
+	public boolean removeStudentFromAll(int stdCode) throws DisciplineIsEmptyException, StudentNotFoundException {
 		if (!hasStudent(stdCode))
 			return false;
 
@@ -102,7 +106,8 @@ public class SchoolGrades {
 		return true;
 	}
 
-	public ArrayList<Discipline> getDisciplinesOfStudent(int code) throws DisciplineNotFoundException {
+	public ArrayList<Discipline> getDisciplinesOfStudent(int code)
+			throws DisciplineNotFoundException, DisciplineIsEmptyException {
 		ArrayList<Discipline> result = new ArrayList<Discipline>();
 		for (Discipline i : disciplines) {
 			if (i.hasStudent(code))
@@ -133,35 +138,31 @@ public class SchoolGrades {
 		return true;
 
 	}
-	
+
 	public double getAverageOfAllDisciplines() {
 		double sum = 0;
-		for(Discipline i : disciplines) {
+		for (Discipline i : disciplines) {
 			sum += i.averageGrade();
 		}
-		return sum/disciplines.size();
+		return sum / disciplines.size();
 	}
-	
-	public int getNumOfAllStudents(){
+
+	public int getNumOfAllStudents() {
 		int sum = 0;
-		for(Discipline i : disciplines) {
+		for (Discipline i : disciplines) {
 			sum += i.getNumOfStudents();
 		}
 		return sum;
 	}
-	
-	public ArrayList<Student> getAllStudents() throws DisciplineIsEmptyException{
+
+	public ArrayList<Student> getAllStudents() {
 		ArrayList<Student> result = new ArrayList<>();
-		for(Discipline i : disciplines) {
-			for(Student j : i.getStudents()) {
-				if(!result.contains(j))
+		for (Discipline i : disciplines) {
+			for (Student j : i.getStudents()) {
+				if (!result.contains(j))
 					result.add(j);
 			}
 		}
-		if(result.isEmpty())
-			throw new DisciplineIsEmptyException();
 		return result;
 	}
-	
-
 }

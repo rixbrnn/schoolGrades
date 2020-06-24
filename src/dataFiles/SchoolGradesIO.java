@@ -1,4 +1,4 @@
-package laboratorioFinal;
+package dataFiles;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+
+import school.*;
+import systemExceptions.DisciplineIsEmptyException;
+import systemExceptions.InvalidCodeException;
+import systemExceptions.InvalidStudentParametersException;
 
 public class SchoolGradesIO {
 
@@ -41,7 +46,8 @@ public class SchoolGradesIO {
 		return true;
 	}
 
-	public static SchoolGrades readSchoolGrades() throws IOException, InvalidStudentParametersException {
+	public static SchoolGrades readSchoolGrades()
+			throws IOException, InvalidStudentParametersException, InvalidCodeException, DisciplineIsEmptyException {
 		{
 			InputStream is = new FileInputStream(SchoolGradesIO.DATA_FILE_NAME);
 			InputStreamReader isr = new InputStreamReader(is);
@@ -84,7 +90,7 @@ public class SchoolGradesIO {
 					System.out.println(stCode);
 					System.out.println(gA);
 					System.out.println(gB);
-					Student st = new Student(stName, stCode, gA, gB);
+					Student st = new Student(stName, stCode);
 					school.addStudentToDiscipline(st, disCode);
 				}
 				s = br.readLine();

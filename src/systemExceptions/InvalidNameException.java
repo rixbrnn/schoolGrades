@@ -1,7 +1,7 @@
-package laboratorioFinal;
+package systemExceptions;
 
 public class InvalidNameException extends Exception {
-	InvalidNameException(){
+	public InvalidNameException(){
 		super("Invalid name!");
 	}
 

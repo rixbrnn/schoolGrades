@@ -1,7 +1,7 @@
-package laboratorioFinal;
+package systemExceptions;
 
 public class InvalidStudentParametersException extends Exception{
-	InvalidStudentParametersException(){
+	public InvalidStudentParametersException(){
 		super("Can't create new Student with Invalid parameters!");
 	}
 

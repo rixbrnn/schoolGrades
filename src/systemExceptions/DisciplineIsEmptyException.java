@@ -1,7 +1,7 @@
-package laboratorioFinal;
+package systemExceptions;
 
 public class DisciplineIsEmptyException extends Exception {
-	DisciplineIsEmptyException(){
+	public DisciplineIsEmptyException(){
 		super("The discipline is empty!");
 	}
 

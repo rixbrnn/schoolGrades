@@ -1,7 +1,7 @@
-package laboratorioFinal;
+package systemExceptions;
 
 public class DuplicatedCodeException extends Exception{
-	DuplicatedCodeException(){
+	public DuplicatedCodeException(){
 		super("This code has already been added!");
 	}
 

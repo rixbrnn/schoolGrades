@@ -1,7 +1,7 @@
-package laboratorioFinal;
+package systemExceptions;
 
 public class InvalidGradeException extends Exception {
-	InvalidGradeException(){
+	public InvalidGradeException(){
 		super("Invalid Grade!");
 	}
 
