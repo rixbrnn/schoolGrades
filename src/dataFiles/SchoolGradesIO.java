@@ -13,7 +13,8 @@ import systemExceptions.*;
 public class SchoolGradesIO implements IFileIO {
 
 	@Override
-	public void loadDisciplines(SchoolGrades sG, File file) throws FileNotFoundException, IOException {
+	public void loadDisciplines(SchoolGrades sG, File file)
+			throws FileNotFoundException, IOException, IndexOutOfBoundsException {
 
 //		disciplineName;disciplineCode		
 
@@ -31,8 +32,9 @@ public class SchoolGradesIO implements IFileIO {
 	}
 
 	@Override
-	public void loadStudents(SchoolGrades sG, File file) throws NumberFormatException, IOException,
-			InvalidStudentParametersException, InvalidCodeException, DisciplineIsEmptyException {
+	public void loadStudents(SchoolGrades sG, File file)
+			throws NumberFormatException, IOException, InvalidStudentParametersException, InvalidCodeException,
+			DisciplineIsEmptyException, IndexOutOfBoundsException {
 
 // 		disciplineCode;studentName;studentCode
 
@@ -45,13 +47,15 @@ public class SchoolGradesIO implements IFileIO {
 				Student student = new Student(cols[1], Integer.parseInt(cols[2]));
 
 				sG.addStudentToDiscipline(student, Integer.parseInt(cols[0]));
+//				sG.addStudentToDiscipline(new Student(cols[1], Integer.parseInt(cols[2])), Integer.parseInt(cols[0]));
 			}
 		}
 	}
 
-	public void loadStudentsGrade(SchoolGrades sG, File file)
-			throws FileNotFoundException, IOException, NumberFormatException, InvalidGradeException,
-			StudentNotFoundException, DisciplineIsEmptyException, DisciplineNotFoundException {
+	@Override
+	public void loadStudentsGrade(SchoolGrades sG, File file) throws FileNotFoundException, IOException,
+			NumberFormatException, InvalidGradeException, StudentNotFoundException, DisciplineIsEmptyException,
+			DisciplineNotFoundException, IndexOutOfBoundsException {
 
 // 		disciplineCode;studentCode;gradeA;gradeB
 
@@ -74,6 +78,7 @@ public class SchoolGradesIO implements IFileIO {
 	public void saveDisciplines(SchoolGrades sG, File file) throws IOException {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
 			bw.write("\n\t\tDisciplines' List\n");
+			bw.write("DisciplineName; DisciplineCode; NumberOfStudents\n");
 			bw.write("=======================================================\n");
 			bw.newLine();
 
@@ -87,10 +92,11 @@ public class SchoolGradesIO implements IFileIO {
 
 	@Override
 	public void saveStudents(SchoolGrades sG, int disCode, File file) throws IOException, DisciplineNotFoundException {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter("C\\users\\gabid\\desktop\\DisciplinesOut.txt"))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
 			bw.write("\n\t\t");
 			bw.write(sG.getDiscipline(disCode).getName());
 			bw.write("'s Students List\n");
+			bw.write("StudentName; StudentCode; GradeA; GradeB; FinalGrade\n");
 			bw.write("=======================================================\n");
 			bw.newLine();
 
@@ -104,7 +110,7 @@ public class SchoolGradesIO implements IFileIO {
 
 	@Override
 	public void saveAll(SchoolGrades sG, File file) throws IOException {
-		try (BufferedWriter bw = new BufferedWriter(new FileWriter("C\\users\\gabid\\desktop\\DisciplinesOut.txt"))) {
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
 			bw.write("\n\t\tSchool's Full Info List\n");
 			bw.write("=======================================================\n");
 			bw.newLine();
@@ -113,9 +119,10 @@ public class SchoolGradesIO implements IFileIO {
 				bw.write(d.toString());
 				bw.newLine();
 				for (Student s : d.getStudents()) {
-					bw.write(s.toString());
+					bw.write("\t" + s.toString());
 					bw.newLine();
 				}
+				bw.write("-------------------------------------------------------");
 			}
 			bw.write("=======================================================\n");
 		}

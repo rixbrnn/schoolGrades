@@ -7,13 +7,16 @@ import school.*;
 import systemExceptions.*;
 
 public interface IFileIO {
-	void loadDisciplines(SchoolGrades sG, File file) throws FileNotFoundException, IOException;
+	void loadDisciplines(SchoolGrades sG, File file)
+			throws FileNotFoundException, IOException, IndexOutOfBoundsException;
 
-	void loadStudents(SchoolGrades sG, File file) throws NumberFormatException, IOException,
-			InvalidStudentParametersException, InvalidCodeException, DisciplineIsEmptyException;
+	void loadStudents(SchoolGrades sG, File file)
+			throws NumberFormatException, IOException, InvalidStudentParametersException, InvalidCodeException,
+			DisciplineIsEmptyException, IndexOutOfBoundsException;
 
 	void loadStudentsGrade(SchoolGrades sG, File file) throws FileNotFoundException, IOException, NumberFormatException,
-			InvalidGradeException, StudentNotFoundException, DisciplineIsEmptyException, DisciplineNotFoundException;
+			InvalidGradeException, StudentNotFoundException, DisciplineIsEmptyException, DisciplineNotFoundException,
+			IndexOutOfBoundsException;
 
 	void saveDisciplines(SchoolGrades sG, File file) throws IOException;
 

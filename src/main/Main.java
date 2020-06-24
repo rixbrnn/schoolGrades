@@ -33,7 +33,6 @@ public class Main {
 			case 1:
 
 				option = -1;
-
 				break;
 
 			case 2:
@@ -67,13 +66,18 @@ public class Main {
 			case 5:
 
 				try {
-					menu.showStudentGrades(school);
+					menu.showStudent(school);
 				} catch (DisciplineNotFoundException | StudentNotFoundException | DisciplineIsEmptyException e) {
 					System.out.println("\n" + e);
 				}
 				break;
 
 			case 6:
+
+				menu.showDisciplines(school);
+				break;
+
+			case 7:
 
 				try {
 					menu.showDisciplineFinalGrades(school);
@@ -82,7 +86,7 @@ public class Main {
 				}
 				break;
 
-			case 7:
+			case 8:
 
 				try {
 					menu.studentListFromDiscipline(school);
@@ -91,7 +95,7 @@ public class Main {
 				}
 				break;
 
-			case 8:
+			case 9:
 
 				menu.studentListFromSchool(school);
 				break;
@@ -99,41 +103,39 @@ public class Main {
 			case 14:
 
 				try {
-					String path = menu.searchFilePath(selectOption);
+					String path = menu.setFilePath(selectOption);
 					menu.loadDisciplines(school, new File(path));
-				} catch (NumberFormatException | IOException | InvalidOptionException e) {
+				} catch (NumberFormatException | IOException | InvalidOptionException | IndexOutOfBoundsException e) {
 					System.out.println("\n" + e);
-					;
 				}
-
 				break;
 
 			case 15:
 				try {
-					String path = menu.searchFilePath(selectOption);
+					String path = menu.setFilePath(selectOption);
 					menu.loadStudents(school, new File(path));
 				} catch (InvalidOptionException | NumberFormatException | IOException
-						| InvalidStudentParametersException | InvalidCodeException | DisciplineIsEmptyException e) {
+						| InvalidStudentParametersException | InvalidCodeException | DisciplineIsEmptyException
+						| IndexOutOfBoundsException e) {
 					System.out.println("\n" + e);
 				}
-
 				break;
 
 			case 16:
 				try {
-					String path = menu.searchFilePath(selectOption);
+					String path = menu.setFilePath(selectOption);
 					menu.loadStudentsGrades(school, new File(path));
 				} catch (InvalidOptionException | NumberFormatException | IOException | InvalidGradeException
-						| StudentNotFoundException | DisciplineIsEmptyException | DisciplineNotFoundException e) {
+						| StudentNotFoundException | DisciplineIsEmptyException | DisciplineNotFoundException
+						| IndexOutOfBoundsException e) {
 					System.out.println("\n" + e);
 				}
-
 				break;
 
 			case 17:
 
 				try {
-					String path = menu.searchFilePath(selectOption);
+					String path = menu.setFilePath(selectOption);
 					menu.saveDisciplinesToFile(school, new File(path));
 				} catch (IOException | InvalidOptionException e) {
 					System.out.println("\n" + e);
@@ -143,7 +145,7 @@ public class Main {
 			case 18:
 
 				try {
-					String path = menu.searchFilePath(selectOption);
+					String path = menu.setFilePath(selectOption);
 					menu.saveStudentsToFile(school, new File(path));
 				} catch (IOException | InvalidOptionException | DisciplineNotFoundException e) {
 					System.out.println("\n" + e);
@@ -153,7 +155,7 @@ public class Main {
 			case 19:
 
 				try {
-					String path = menu.searchFilePath(selectOption);
+					String path = menu.setFilePath(selectOption);
 					menu.saveAllToFile(school, new File(path));
 				} catch (IOException | InvalidOptionException e) {
 					System.out.println("\n" + e);

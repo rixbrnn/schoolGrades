@@ -80,14 +80,16 @@ public class Discipline {
 		}
 		return sum / students.size();
 	}
-	
+
 	public String toString() {
 		StringBuilder st = new StringBuilder();
-		
+
+		st.append(this.name);
+		st.append("; ");
 		st.append(this.code);
 		st.append("; ");
-		st.append(this.name);
-		
+		st.append(this.getNumOfStudents());
+
 		return st.toString();
 	}
 

@@ -10,36 +10,40 @@ import systemExceptions.*;
 public interface MenuUI {
 	int showMenu() throws InvalidOptionException;
 
+	void registerDiscipline(SchoolGrades sG);
+
 	void registerStudent(SchoolGrades sG)
 			throws InvalidStudentParametersException, DuplicatedCodeException, DisciplineNotFoundException,
 			InvalidCodeException, InvalidGradeException, DisciplineIsEmptyException, InputMismatchException;
 
-	void registerDiscipline(SchoolGrades sG);
-
 	void registerGrade(SchoolGrades sG) throws InvalidGradeException, StudentNotFoundException,
 			DisciplineIsEmptyException, DisciplineNotFoundException, InputMismatchException;
 
-	void showStudentGrades(SchoolGrades sG) throws DisciplineNotFoundException, StudentNotFoundException,
-			DisciplineIsEmptyException, InputMismatchException;
+	void showDisciplines(SchoolGrades sG);
 
-	void showDisciplineFinalGrades(SchoolGrades sG) throws DisciplineNotFoundException, InputMismatchException;
+	void showStudent(SchoolGrades sG) throws DisciplineNotFoundException, StudentNotFoundException,
+			DisciplineIsEmptyException, InputMismatchException;
 
 	void studentListFromDiscipline(SchoolGrades sG) throws DisciplineNotFoundException, InputMismatchException;
 
+	void showDisciplineFinalGrades(SchoolGrades sG) throws DisciplineNotFoundException, InputMismatchException;
+
 	void studentListFromSchool(SchoolGrades sG);
 
-	void loadDisciplines(SchoolGrades sG, File file) throws NumberFormatException, IOException;
+	void loadDisciplines(SchoolGrades sG, File file) throws NumberFormatException, IOException, IndexOutOfBoundsException;
 
 	void loadStudents(SchoolGrades sG, File file) throws NumberFormatException, IOException,
-			InvalidStudentParametersException, InvalidCodeException, DisciplineIsEmptyException;
+			InvalidStudentParametersException, InvalidCodeException, DisciplineIsEmptyException, IndexOutOfBoundsException;
 
 	void loadStudentsGrades(SchoolGrades sG, File file)
 			throws NumberFormatException, FileNotFoundException, IOException, InvalidGradeException,
-			StudentNotFoundException, DisciplineIsEmptyException, DisciplineNotFoundException;
+			StudentNotFoundException, DisciplineIsEmptyException, DisciplineNotFoundException, IndexOutOfBoundsException;
 
 	void saveDisciplinesToFile(SchoolGrades sG, File file) throws IOException;
-	
+
 	void saveStudentsToFile(SchoolGrades sG, File file) throws IOException, DisciplineNotFoundException;
-	
+
 	void saveAllToFile(SchoolGrades sG, File file) throws IOException;
+
+	String setFilePath(int option) throws InvalidOptionException;
 }

@@ -45,7 +45,7 @@ public class Student {
 
 	public String toString() {
 		StringBuilder st = new StringBuilder();
-		
+
 		st.append(this.name);
 		st.append("; ");
 		st.append(this.code);
@@ -92,18 +92,18 @@ public class Student {
 	}
 
 	public String showStudentFinalGrade() {
-		
+
 		StringBuilder st = new StringBuilder();
 
 		st.append("\nCode: ");
 		st.append(this.code);
 		st.append(" - Final Grade = ");
-		
+
 		if (gradeA > -1 && gradeB == -1)
 			st.append(averageGrade());
 		else
 			st.append("No final grade yet.");
-		
+
 		return st.toString();
 	}
 }
