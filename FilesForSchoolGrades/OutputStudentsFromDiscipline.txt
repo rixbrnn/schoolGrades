@@ -1,10 +1,11 @@
 
-		Art's Students List
+					Art's Students List
+==============================================================================================================
 StudentName; StudentCode; GradeA; GradeB; FinalGrade
-=======================================================
 
-Gabriel; 99999; Grades: A = 10.0; B = 8.0; Final Grade = 8.666666666666666
-Richard; 88888; Grades: A = 8.0; B = 10.0; Final Grade = 9.333333333333334
-Bringmann; 66666; Grades: A = 10.0; B = 9.9; Final Grade = 9.933333333333334
-Freitas; 77777; Grades: A = 7.75; B = 6.45; Final Grade = 6.883333333333333
-=======================================================
+        GABRIEL;          99999;         GRADES: 10,00;  8,00;    FINAL GRADE:  8,67;
+        RICHARD;          88888;         GRADES:  8,00; 10,00;    FINAL GRADE:  9,33;
+      BRINGMANN;          66666;         GRADES: 10,00;  9,90;    FINAL GRADE:  9,93;
+        FREITAS;          77777;         GRADES:  7,75;  6,45;    FINAL GRADE:  6,88;
+
+==============================================================================================================

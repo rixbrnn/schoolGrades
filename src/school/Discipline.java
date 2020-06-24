@@ -84,13 +84,10 @@ public class Discipline {
 	public String toString() {
 		StringBuilder st = new StringBuilder();
 
-		st.append(this.name);
-		st.append("; ");
-		st.append(this.code);
-		st.append("; ");
-		st.append(this.getNumOfStudents());
+		st.append(String.format("%10S;", name));
+		st.append(String.format("%15d;", code));
+		st.append(String.format("%15d;", getNumOfStudents()));
 
 		return st.toString();
 	}
-
 }

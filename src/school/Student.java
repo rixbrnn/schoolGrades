@@ -43,28 +43,6 @@ public class Student {
 			return (gradeA + (gradeB * 2)) / 3;
 	}
 
-	public String toString() {
-		StringBuilder st = new StringBuilder();
-
-		st.append(this.name);
-		st.append("; ");
-		st.append(this.code);
-		if (gradeA > -1 && gradeB > -1) {
-			st.append("; Grades: A = ");
-			st.append(this.gradeA);
-			st.append("; B = ");
-			st.append(this.gradeB);
-			st.append("; Final Grade = ");
-			st.append(averageGrade());
-		} else if (gradeA > -1 && gradeB == -1) {
-			st.append("; Grades: A = ");
-			st.append(this.gradeA);
-			st.append("; B = Not Registered");
-		}
-
-		return st.toString();
-	}
-
 	public int getCode() {
 		return code;
 	}
@@ -103,6 +81,16 @@ public class Student {
 			st.append(averageGrade());
 		else
 			st.append("No final grade yet.");
+
+		return st.toString();
+	}
+
+	public String toString() {
+		StringBuilder st = new StringBuilder();
+
+		st.append(String.format("%15S;", name));
+		st.append(String.format("%15d;", code));
+		st.append(String.format("%15S:%6.2f;%6.2f;%15S:%6.2f;", "Grades", gradeA, gradeB, "Final Grade", averageGrade()));
 
 		return st.toString();
 	}

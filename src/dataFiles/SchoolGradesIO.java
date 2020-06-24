@@ -78,53 +78,57 @@ public class SchoolGradesIO implements IFileIO {
 	public void saveDisciplines(SchoolGrades sG, File file) throws IOException {
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
 			bw.write("\n\t\tDisciplines' List\n");
-			bw.write("DisciplineName; DisciplineCode; NumberOfStudents\n");
 			bw.write("=======================================================\n");
+			bw.write("DisciplineName; DisciplineCode; NumberOfStudents\n");
 			bw.newLine();
 
 			for (Discipline d : sG.getDisciplines()) {
 				bw.write(d.toString());
 				bw.newLine();
 			}
-			bw.write("=======================================================\n");
+			bw.write("\n=======================================================");
 		}
 	}
 
 	@Override
 	public void saveStudents(SchoolGrades sG, int disCode, File file) throws IOException, DisciplineNotFoundException {
+		String line = "=======================================================";
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-			bw.write("\n\t\t");
+			bw.write("\n\t\t\t\t\t");
 			bw.write(sG.getDiscipline(disCode).getName());
 			bw.write("'s Students List\n");
+			bw.write(line + line + "\n");
 			bw.write("StudentName; StudentCode; GradeA; GradeB; FinalGrade\n");
-			bw.write("=======================================================\n");
 			bw.newLine();
 
 			for (Student s : sG.getDiscipline(disCode).getStudents()) {
 				bw.write(s.toString());
 				bw.newLine();
 			}
-			bw.write("=======================================================\n");
+			bw.write("\n" + line + line);
 		}
 	}
 
 	@Override
 	public void saveAll(SchoolGrades sG, File file) throws IOException {
+		String line = "=======================================================";
+		String line2 = "-------------------------------------------------------";
 		try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-			bw.write("\n\t\tSchool's Full Info List\n");
-			bw.write("=======================================================\n");
+			bw.write("\n\t\t\t\t\tSchool's Full Info List\n");
+			bw.write(line + line + "\n");
 			bw.newLine();
 
+			bw.write(line2 + line2 + "\n");
 			for (Discipline d : sG.getDisciplines()) {
 				bw.write(d.toString());
-				bw.newLine();
+				bw.write("\n" + line2 + line2 + "\n");
 				for (Student s : d.getStudents()) {
 					bw.write("\t" + s.toString());
 					bw.newLine();
 				}
-				bw.write("-------------------------------------------------------");
+				bw.write("\n" + line2 + line2 + "\n");
 			}
-			bw.write("=======================================================\n");
+			bw.write(line + line);
 		}
 	}
 }

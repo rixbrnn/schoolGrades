@@ -30,14 +30,16 @@ public interface MenuUI {
 
 	void studentListFromSchool(SchoolGrades sG);
 
-	void loadDisciplines(SchoolGrades sG, File file) throws NumberFormatException, IOException, IndexOutOfBoundsException;
+	void loadDisciplines(SchoolGrades sG, File file)
+			throws NumberFormatException, IOException, IndexOutOfBoundsException;
 
-	void loadStudents(SchoolGrades sG, File file) throws NumberFormatException, IOException,
-			InvalidStudentParametersException, InvalidCodeException, DisciplineIsEmptyException, IndexOutOfBoundsException;
+	void loadStudents(SchoolGrades sG, File file)
+			throws NumberFormatException, IOException, InvalidStudentParametersException, InvalidCodeException,
+			DisciplineIsEmptyException, IndexOutOfBoundsException;
 
-	void loadStudentsGrades(SchoolGrades sG, File file)
-			throws NumberFormatException, FileNotFoundException, IOException, InvalidGradeException,
-			StudentNotFoundException, DisciplineIsEmptyException, DisciplineNotFoundException, IndexOutOfBoundsException;
+	void loadStudentsGrades(SchoolGrades sG, File file) throws NumberFormatException, FileNotFoundException,
+			IOException, InvalidGradeException, StudentNotFoundException, DisciplineIsEmptyException,
+			DisciplineNotFoundException, IndexOutOfBoundsException;
 
 	void saveDisciplinesToFile(SchoolGrades sG, File file) throws IOException;
 

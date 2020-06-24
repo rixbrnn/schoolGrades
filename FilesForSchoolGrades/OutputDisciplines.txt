@@ -1,11 +1,12 @@
 
 		Disciplines' List
-DisciplineName; DisciplineCode; NumberOfStudents
 =======================================================
+DisciplineName; DisciplineCode; NumberOfStudents
 
-Art; 1; 4
-English; 2; 3
-Geography; 3; 3
-History; 4; 3
-Math; 5; 2
+       ART;              1;              4;
+   ENGLISH;              2;              3;
+ GEOGRAPHY;              3;              3;
+   HISTORY;              4;              3;
+      MATH;              5;              2;
+
 =======================================================
