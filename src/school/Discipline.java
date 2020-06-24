@@ -42,7 +42,7 @@ public class Discipline {
 		return students.size();
 	}
 
-	public void addStudent(Student student) throws DuplicatedCodeException, DisciplineIsEmptyException {
+	public void addStudent(Student student) throws DuplicatedCodeException {
 		if (hasStudent(student.getCode()))
 			throw new DuplicatedCodeException();
 		students.add(student);
@@ -63,7 +63,7 @@ public class Discipline {
 		return true;
 	}
 
-	public boolean hasStudent(int cod) throws DisciplineIsEmptyException {
+	public boolean hasStudent(int cod) {
 		if (students.isEmpty())
 			return false;
 		for (Student i : students) {

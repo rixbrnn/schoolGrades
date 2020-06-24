@@ -35,7 +35,7 @@ public class Student {
 	}
 
 	public double averageGrade() {
-		if (gradeA == -1 && gradeB == 1)
+		if (gradeA == -1 && gradeB == -1)
 			return -1;
 		else if (gradeA > -1 && gradeB == -1)
 			return gradeA;

@@ -159,60 +159,81 @@ public class Menu implements MenuUI {
 	public void registerStudent(SchoolGrades sG)
 			throws InvalidStudentParametersException, DuplicatedCodeException, DisciplineNotFoundException,
 			InvalidCodeException, InvalidGradeException, DisciplineIsEmptyException, InputMismatchException {
-		System.out.print("Enter student's name: ");
-		String name = SCAN.next();
-		System.out.print("Enter student's code: ");
-		int code = SCAN.nextInt();
 
-		Student s = new Student(name, code);
+		try {
+			System.out.print("Enter student's name: ");
+			String name = SCAN.next();
+			System.out.print("Enter student's code: ");
+			int code = SCAN.nextInt();
 
-		System.out.println("Enter the discipline's code: ");
-		int dCode = SCAN.nextInt();
+			Student s = new Student(name, code);
 
-		sG.getDiscipline(dCode).addStudent(s);
+			System.out.println("Enter the discipline's code: ");
+			int dCode = SCAN.nextInt();
 
-		registerGradesNewStudent(s);
+			sG.getDiscipline(dCode).addStudent(s);
+
+			registerGradesNewStudent(s);
+		} catch (InputMismatchException e) {
+			SCAN.next();
+			throw new InputMismatchException();
+		}
 	}
 
 	private void registerGradesNewStudent(Student s) throws InvalidGradeException, InputMismatchException {
-		System.out.println("Do you wish to register " + s.getName().toUpperCase() + " grades?");
-		System.out.println("Enter 1 to Register or 0 to Exit");
-		System.out.print("Your option: ");
-		int option = SCAN.nextInt();
+		try {
+			System.out.println("Do you wish to register " + s.getName().toUpperCase() + " grades?");
+			System.out.println("Enter 1 to Register or 0 to Exit");
+			System.out.print("Your option: ");
+			int option = SCAN.nextInt();
 
-		if (option == 1) {
-			registerGrade(s);
+			if (option == 1) {
+				registerGrade(s);
+			}
+		} catch (InputMismatchException e) {
+			SCAN.next();
+			throw new InputMismatchException();
 		}
 	}
 
 	private void registerGrade(Student s) throws InvalidGradeException, InputMismatchException {
-		System.out.print("Enter Grade A: ");
-		double gA = SCAN.nextDouble();
-		System.out.print("Enter Grade B: ");
-		double gB = SCAN.nextDouble();
+		try {
+			System.out.print("Enter Grade A: ");
+			double gA = SCAN.nextDouble();
+			System.out.print("Enter Grade B: ");
+			double gB = SCAN.nextDouble();
 
-		s.setGradeA(gA);
-		s.setGradeB(gB);
+			s.setGradeA(gA);
+			s.setGradeB(gB);
+		} catch (InputMismatchException e) {
+			SCAN.next();
+			throw new InputMismatchException();
+		}
 	}
 
 	@Override
 	public void registerGrade(SchoolGrades sG) throws InvalidGradeException, StudentNotFoundException,
 			DisciplineIsEmptyException, DisciplineNotFoundException, InputMismatchException {
-		System.out.print("Enter Student's discipline code: ");
-		int disciplineCode = SCAN.nextInt();
-		Discipline result = sG.getDiscipline(disciplineCode);
+		try {
+			System.out.print("Enter Student's discipline code: ");
+			int disciplineCode = SCAN.nextInt();
+			Discipline result = sG.getDiscipline(disciplineCode);
 
-		System.out.print("Enter Student's code: ");
-		int studentCode = SCAN.nextInt();
-		Student resultS = result.getStudent(studentCode);
+			System.out.print("Enter Student's code: ");
+			int studentCode = SCAN.nextInt();
+			Student resultS = result.getStudent(studentCode);
 
-		System.out.print("Enter Grade A: ");
-		double gA = SCAN.nextDouble();
-		System.out.print("Enter Grade B: ");
-		double gB = SCAN.nextDouble();
+			System.out.print("Enter Grade A: ");
+			double gA = SCAN.nextDouble();
+			System.out.print("Enter Grade B: ");
+			double gB = SCAN.nextDouble();
 
-		resultS.setGradeA(gA);
-		resultS.setGradeB(gB);
+			resultS.setGradeA(gA);
+			resultS.setGradeB(gB);
+		} catch (InputMismatchException e) {
+			SCAN.next();
+			throw new InputMismatchException();
+		}
 	}
 
 	@Override
@@ -228,52 +249,65 @@ public class Menu implements MenuUI {
 	@Override
 	public void showStudent(SchoolGrades sG) throws DisciplineNotFoundException, StudentNotFoundException,
 			DisciplineIsEmptyException, InputMismatchException {
-		System.out.print("Enter the discipline's code: ");
-		int disciplineCode = SCAN.nextInt();
-		Discipline discipline = sG.getDiscipline(disciplineCode);
+		try {
+			System.out.print("Enter the discipline's code: ");
+			int disciplineCode = SCAN.nextInt();
+			Discipline discipline = sG.getDiscipline(disciplineCode);
 
-		System.out.print("Enter the student's code: ");
-		int studentCode = SCAN.nextInt();
+			System.out.print("Enter the student's code: ");
+			int studentCode = SCAN.nextInt();
 
-		System.out.println("=============================");
-		System.out.println(discipline.getStudent(studentCode));
-		System.out.println("=============================");
-
+			System.out.println("=============================");
+			System.out.println(discipline.getStudent(studentCode));
+			System.out.println("=============================");
+		} catch (InputMismatchException e) {
+			SCAN.next();
+			throw new InputMismatchException();
+		}
 	}
 
 	@Override
 	public void studentListFromDiscipline(SchoolGrades sG) throws DisciplineNotFoundException, InputMismatchException {
-		System.out.print("Enter the discipline's code: ");
-		int disciplineCode = SCAN.nextInt();
-		Discipline discipline = sG.getDiscipline(disciplineCode);
+		try {
+			System.out.print("Enter the discipline's code: ");
+			int disciplineCode = SCAN.nextInt();
+			Discipline discipline = sG.getDiscipline(disciplineCode);
 
-		ArrayList<Student> result = discipline.getStudents();
+			ArrayList<Student> result = discipline.getStudents();
 
-		System.out.println("=============================");
-		System.out.printf("%20S", "All " + discipline.getName() + " Students List");
-		System.out.println("\n=============================");
-		for (Student i : result) {
-			System.out.println(i);
+			System.out.println("=============================");
+			System.out.printf("%20S", "All " + discipline.getName() + " Students List");
+			System.out.println("\n=============================");
+			for (Student i : result) {
+				System.out.println(i);
+			}
+			System.out.println("=============================");
+		} catch (InputMismatchException e) {
+			SCAN.next();
+			throw new InputMismatchException();
 		}
-		System.out.println("=============================");
-
 	}
 
 	@Override
 	public void showDisciplineFinalGrades(SchoolGrades sG) throws DisciplineNotFoundException, InputMismatchException {
-		System.out.print("Enter the discipline's code: ");
-		int disciplineCode = SCAN.nextInt();
-		Discipline discipline = sG.getDiscipline(disciplineCode);
+		try {
+			System.out.print("Enter the discipline's code: ");
+			int disciplineCode = SCAN.nextInt();
+			Discipline discipline = sG.getDiscipline(disciplineCode);
 
-		ArrayList<Student> result = discipline.getStudents();
+			ArrayList<Student> result = discipline.getStudents();
 
-		System.out.println("=============================");
-		System.out.printf("%20S", "All " + discipline.getName() + " Students Final Grades");
-		System.out.println("\n=============================");
-		for (Student i : result) {
-			System.out.println(i.showStudentFinalGrade());
+			System.out.println("=============================");
+			System.out.printf("%20S", "All " + discipline.getName() + " Students Final Grades");
+			System.out.println("\n=============================");
+			for (Student i : result) {
+				System.out.println(i.showStudentFinalGrade());
+			}
+			System.out.println("=============================");
+		} catch (InputMismatchException e) {
+			SCAN.next();
+			throw new InputMismatchException();
 		}
-		System.out.println("=============================");
 	}
 
 	@Override
@@ -318,11 +352,16 @@ public class Menu implements MenuUI {
 	}
 
 	public void saveStudentsToFile(SchoolGrades sG, File file) throws IOException, DisciplineNotFoundException {
-		System.out.print("Enter the discipline's code: ");
-		int disciplineCode = SCAN.nextInt();
+		try {
+			System.out.print("Enter the discipline's code: ");
+			int disciplineCode = SCAN.nextInt();
 
-		SchoolGradesIO sIO = new SchoolGradesIO();
-		sIO.saveStudents(sG, disciplineCode, file);
+			SchoolGradesIO sIO = new SchoolGradesIO();
+			sIO.saveStudents(sG, disciplineCode, file);
+		} catch (InputMismatchException e) {
+			SCAN.next();
+			throw new InputMismatchException();
+		}
 	}
 
 	public void saveAllToFile(SchoolGrades sG, File file) throws IOException {

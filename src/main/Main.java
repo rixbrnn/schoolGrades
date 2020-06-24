@@ -48,7 +48,8 @@ public class Main {
 				try {
 					menu.registerStudent(school);
 				} catch (InvalidStudentParametersException | DuplicatedCodeException | DisciplineNotFoundException
-						| InvalidCodeException | InvalidGradeException | DisciplineIsEmptyException e) {
+						| InvalidCodeException | InvalidGradeException | DisciplineIsEmptyException
+						| InputMismatchException e) {
 					System.out.println("\n" + e);
 				}
 				break;
@@ -58,7 +59,7 @@ public class Main {
 				try {
 					menu.registerGrade(school);
 				} catch (InvalidGradeException | StudentNotFoundException | DisciplineIsEmptyException
-						| DisciplineNotFoundException e) {
+						| DisciplineNotFoundException | InputMismatchException e) {
 					System.out.println("\n" + e);
 				}
 				break;
@@ -67,7 +68,8 @@ public class Main {
 
 				try {
 					menu.showStudent(school);
-				} catch (DisciplineNotFoundException | StudentNotFoundException | DisciplineIsEmptyException e) {
+				} catch (DisciplineNotFoundException | StudentNotFoundException | DisciplineIsEmptyException
+						| InputMismatchException e) {
 					System.out.println("\n" + e);
 				}
 				break;
@@ -90,7 +92,7 @@ public class Main {
 
 				try {
 					menu.studentListFromDiscipline(school);
-				} catch (DisciplineNotFoundException e) {
+				} catch (DisciplineNotFoundException | InputMismatchException e) {
 					System.out.println("\n" + e);
 				}
 				break;
@@ -105,7 +107,8 @@ public class Main {
 				try {
 					String path = menu.setFilePath(selectOption);
 					menu.loadDisciplines(school, new File(path));
-				} catch (NumberFormatException | IOException | InvalidOptionException | IndexOutOfBoundsException e) {
+				} catch (NumberFormatException | IOException | InvalidOptionException | IndexOutOfBoundsException
+						| InputMismatchException e) {
 					System.out.println("\n" + e);
 				}
 				break;
@@ -116,7 +119,7 @@ public class Main {
 					menu.loadStudents(school, new File(path));
 				} catch (InvalidOptionException | NumberFormatException | IOException
 						| InvalidStudentParametersException | InvalidCodeException | DisciplineIsEmptyException
-						| IndexOutOfBoundsException e) {
+						| IndexOutOfBoundsException | InputMismatchException e) {
 					System.out.println("\n" + e);
 				}
 				break;
@@ -127,7 +130,7 @@ public class Main {
 					menu.loadStudentsGrades(school, new File(path));
 				} catch (InvalidOptionException | NumberFormatException | IOException | InvalidGradeException
 						| StudentNotFoundException | DisciplineIsEmptyException | DisciplineNotFoundException
-						| IndexOutOfBoundsException e) {
+						| IndexOutOfBoundsException | InputMismatchException e) {
 					System.out.println("\n" + e);
 				}
 				break;
@@ -137,7 +140,7 @@ public class Main {
 				try {
 					String path = menu.setFilePath(selectOption);
 					menu.saveDisciplinesToFile(school, new File(path));
-				} catch (IOException | InvalidOptionException e) {
+				} catch (IOException | InvalidOptionException | InputMismatchException e) {
 					System.out.println("\n" + e);
 				}
 				break;
@@ -157,7 +160,7 @@ public class Main {
 				try {
 					String path = menu.setFilePath(selectOption);
 					menu.saveAllToFile(school, new File(path));
-				} catch (IOException | InvalidOptionException e) {
+				} catch (IOException | InvalidOptionException | InputMismatchException e) {
 					System.out.println("\n" + e);
 				}
 				break;
