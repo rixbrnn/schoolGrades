@@ -45,22 +45,21 @@ public class Student {
 
 	public String toString() {
 		StringBuilder st = new StringBuilder();
-
-		st.append("Student: ");
+		
 		st.append(this.name);
-		st.append("\nCode: ");
+		st.append("; ");
 		st.append(this.code);
 		if (gradeA > -1 && gradeB > -1) {
-			st.append("\nGrades: A = ");
+			st.append("; Grades: A = ");
 			st.append(this.gradeA);
-			st.append(" B = ");
+			st.append("; B = ");
 			st.append(this.gradeB);
-			st.append("\nFinal Grade = ");
+			st.append("; Final Grade = ");
 			st.append(averageGrade());
 		} else if (gradeA > -1 && gradeB == -1) {
-			st.append("\nGrades: A = ");
+			st.append("; Grades: A = ");
 			st.append(this.gradeA);
-			st.append(" B = Not Registered");
+			st.append("; B = Not Registered");
 		}
 
 		return st.toString();
@@ -93,13 +92,18 @@ public class Student {
 	}
 
 	public String showStudentFinalGrade() {
+		
 		StringBuilder st = new StringBuilder();
 
 		st.append("\nCode: ");
 		st.append(this.code);
 		st.append(" - Final Grade = ");
-		st.append(averageGrade());
-
+		
+		if (gradeA > -1 && gradeB == -1)
+			st.append(averageGrade());
+		else
+			st.append("No final grade yet.");
+		
 		return st.toString();
 	}
 }
