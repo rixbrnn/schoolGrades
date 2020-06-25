@@ -14,7 +14,8 @@ public class SchoolGrades {
 	}
 
 	public void addDiscipline(Discipline discipline) {
-		disciplines.add(discipline);
+		if (!hasDiscipline(discipline.getCode()))
+			disciplines.add(discipline);
 	}
 
 	public Discipline getDiscipline(int code) throws DisciplineNotFoundException {
@@ -25,18 +26,18 @@ public class SchoolGrades {
 		throw new DisciplineNotFoundException();
 	}
 
-	public boolean removeDiscipline(int code) {
+	public boolean removeDiscipline(int code) throws DisciplineNotFoundException {
 		if (!hasDiscipline(code))
-			try {
-				disciplines.remove(getDiscipline(code));
-				return true;
-			} catch (DisciplineNotFoundException e) {
-				e.printStackTrace();
-			}
-		return false;
+			throw new DisciplineNotFoundException();
+
+		disciplines.remove(getDiscipline(code));
+		return true;
+
 	}
 
 	private boolean hasDiscipline(int code) {
+		if (disciplines.isEmpty())
+			return false;
 		for (Discipline i : disciplines) {
 			if (i.getCode() == code)
 				return true;
@@ -44,50 +45,37 @@ public class SchoolGrades {
 		return false;
 	}
 
-	public boolean addStudentToDiscipline(Student std, int disCode) throws DisciplineIsEmptyException {
+	public void addStudentToDiscipline(Student std, int disCode)
+			throws DisciplineNotFoundException, DuplicatedCodeException {
 		if (!hasDiscipline(disCode))
-			return false;
-		try {
-			try {
-				this.getDiscipline(disCode).addStudent(std);
-			} catch (DuplicatedCodeException e) {
-				e.printStackTrace();
-				return false;
-			}
-			return true;
-		} catch (DisciplineNotFoundException e) {
-			e.printStackTrace();
-			return false;
-		}
+			throw new DisciplineNotFoundException();
+
+		this.getDiscipline(disCode).addStudent(std);
 	}
 
 	public boolean removeStudentFromDiscipline(int stdCode, int disCode)
-			throws StudentNotFoundException, DisciplineIsEmptyException {
-		if (!hasDiscipline(disCode) || !hasStudent(stdCode))
-			return false;
-		try {
-			this.getDiscipline(disCode).removeStudent(stdCode);
-			return true;
-		} catch (DisciplineNotFoundException e) {
-			e.printStackTrace();
-			return false;
-		}
+			throws StudentNotFoundException, DisciplineNotFoundException, DisciplineIsEmptyException {
+		if (!hasDiscipline(disCode))
+			throw new DisciplineNotFoundException();
+		if (!hasStudent(stdCode))
+			throw new StudentNotFoundException();
+
+		this.getDiscipline(disCode).removeStudent(stdCode);
+		return true;
 	}
 
 	public Student getStudent(int code) throws StudentNotFoundException, DisciplineIsEmptyException {
 		if (hasStudent(code)) {
 			for (Discipline i : disciplines) {
-				try {
-					return i.getStudent(code);
-				} catch (StudentNotFoundException e) {
-					continue;
-				}
+				return i.getStudent(code);
 			}
 		}
 		throw new StudentNotFoundException();
 	}
 
 	private boolean hasStudent(int code) throws DisciplineIsEmptyException {
+		if (disciplines.isEmpty())
+			throw new DisciplineIsEmptyException();
 		for (Discipline i : disciplines) {
 			if (i.hasStudent(code))
 				return true;
@@ -97,7 +85,7 @@ public class SchoolGrades {
 
 	public boolean removeStudentFromAll(int stdCode) throws DisciplineIsEmptyException, StudentNotFoundException {
 		if (!hasStudent(stdCode))
-			return false;
+			throw new StudentNotFoundException();
 
 		for (Discipline i : disciplines) {
 			if (i.hasStudent(stdCode))
@@ -136,10 +124,9 @@ public class SchoolGrades {
 			return false;
 		disciplines.clear();
 		return true;
-
 	}
 
-	public double getAverageOfAllDisciplines() {
+	public double getAverageOfAllDisciplines() throws DisciplineIsEmptyException {
 		double sum = 0;
 		for (Discipline i : disciplines) {
 			sum += i.averageGrade();
@@ -164,5 +151,9 @@ public class SchoolGrades {
 			}
 		}
 		return result;
+	}
+
+	public int getNumOfDisciplines() {
+		return this.disciplines.size();
 	}
 }

@@ -34,7 +34,7 @@ public class SchoolGradesIO implements IFileIO {
 	@Override
 	public void loadStudents(SchoolGrades sG, File file)
 			throws NumberFormatException, IOException, InvalidStudentParametersException, InvalidCodeException,
-			DisciplineIsEmptyException, IndexOutOfBoundsException {
+			DisciplineIsEmptyException, IndexOutOfBoundsException, DisciplineNotFoundException, DuplicatedCodeException {
 
 // 		disciplineCode;studentName;studentCode
 
@@ -47,7 +47,6 @@ public class SchoolGradesIO implements IFileIO {
 				Student student = new Student(cols[1], Integer.parseInt(cols[2]));
 
 				sG.addStudentToDiscipline(student, Integer.parseInt(cols[0]));
-//				sG.addStudentToDiscipline(new Student(cols[1], Integer.parseInt(cols[2])), Integer.parseInt(cols[0]));
 			}
 		}
 	}

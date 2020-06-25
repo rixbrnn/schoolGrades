@@ -77,10 +77,10 @@ public class Student {
 		st.append(this.code);
 		st.append(" - Final Grade = ");
 
-		if (gradeA > -1 && gradeB == -1)
-			st.append(averageGrade());
+		if (gradeA == -1 && gradeB == -1)
+			st.append("No final grade yet.");		
 		else
-			st.append("No final grade yet.");
+			st.append(averageGrade());
 
 		return st.toString();
 	}

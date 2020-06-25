@@ -28,13 +28,14 @@ public class Discipline {
 		return students;
 	}
 
-	public Student getStudent(int code) throws StudentNotFoundException, DisciplineIsEmptyException {
+	public Student getStudent(int code) throws StudentNotFoundException {
 		if (!hasStudent(code))
 			throw new StudentNotFoundException();
+		
 		for (Student i : students) {
 			if (i.getCode() == code)
 				return i;
-		}
+		}		
 		throw new StudentNotFoundException();
 	}
 
@@ -45,21 +46,18 @@ public class Discipline {
 	public void addStudent(Student student) throws DuplicatedCodeException {
 		if (hasStudent(student.getCode()))
 			throw new DuplicatedCodeException();
-		students.add(student);
+		else
+			students.add(student);
 	}
 
 	public boolean removeStudent(int code) throws StudentNotFoundException, DisciplineIsEmptyException {
+		if (students.isEmpty())
+			throw new DisciplineIsEmptyException();
 		if (!hasStudent(code))
-			return false;
+			throw new StudentNotFoundException();
 
-		Student st;
-		try {
-			st = getStudent(code);
-		} catch (StudentNotFoundException e) {
-			e.printStackTrace();
-			return false;
-		}
-		students.remove(st);
+		students.remove(getStudent(code));
+		
 		return true;
 	}
 
@@ -73,7 +71,9 @@ public class Discipline {
 		return false;
 	}
 
-	public double averageGrade() {
+	public double averageGrade() throws DisciplineIsEmptyException {
+		if(students.isEmpty())
+			throw new DisciplineIsEmptyException();
 		double sum = 0;
 		for (Student i : students) {
 			sum += i.averageGrade();

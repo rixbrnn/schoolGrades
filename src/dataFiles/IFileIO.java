@@ -12,7 +12,7 @@ public interface IFileIO {
 
 	void loadStudents(SchoolGrades sG, File file)
 			throws NumberFormatException, IOException, InvalidStudentParametersException, InvalidCodeException,
-			DisciplineIsEmptyException, IndexOutOfBoundsException;
+			DisciplineIsEmptyException, IndexOutOfBoundsException, DisciplineNotFoundException, DuplicatedCodeException;
 
 	void loadStudentsGrade(SchoolGrades sG, File file) throws FileNotFoundException, IOException, NumberFormatException,
 			InvalidGradeException, StudentNotFoundException, DisciplineIsEmptyException, DisciplineNotFoundException,

@@ -35,7 +35,7 @@ public interface MenuUI {
 
 	void loadStudents(SchoolGrades sG, File file)
 			throws NumberFormatException, IOException, InvalidStudentParametersException, InvalidCodeException,
-			DisciplineIsEmptyException, IndexOutOfBoundsException;
+			DisciplineIsEmptyException, IndexOutOfBoundsException, DisciplineNotFoundException, DuplicatedCodeException;
 
 	void loadStudentsGrades(SchoolGrades sG, File file) throws NumberFormatException, FileNotFoundException,
 			IOException, InvalidGradeException, StudentNotFoundException, DisciplineIsEmptyException,

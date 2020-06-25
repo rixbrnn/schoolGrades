@@ -312,12 +312,17 @@ public class Menu implements MenuUI {
 
 	@Override
 	public void studentListFromSchool(SchoolGrades sG) {
-		ArrayList<Student> result = sG.getAllStudents();
 		System.out.println("=============================");
 		System.out.printf("%27S", "All School Students List");
 		System.out.println("\n=============================");
-		for (Student i : result) {
-			System.out.println(i);
+
+		for(Discipline d : sG.getDisciplines()) {
+			System.out.println(d);
+			System.out.println("-----------------------------");
+			for(Student s : d.getStudents()) {
+				System.out.println(s);
+			}
+			System.out.println("\n-----------------------------");
 		}
 		System.out.println("=============================");
 	}
@@ -332,7 +337,7 @@ public class Menu implements MenuUI {
 	@Override
 	public void loadStudents(SchoolGrades sG, File file)
 			throws NumberFormatException, IOException, InvalidStudentParametersException, InvalidCodeException,
-			DisciplineIsEmptyException, IndexOutOfBoundsException {
+			DisciplineIsEmptyException, IndexOutOfBoundsException, DisciplineNotFoundException, DuplicatedCodeException {
 		SchoolGradesIO sIO = new SchoolGradesIO();
 		sIO.loadStudents(sG, file);
 	}
